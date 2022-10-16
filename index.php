@@ -1,4 +1,4 @@
 <?php
 require(__DIR__ . '/vendor/autoload.php');
 
-(new \base\Application())->run();
+(new \base\console\Application())->run();

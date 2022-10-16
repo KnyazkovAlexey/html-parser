@@ -1,12 +1,17 @@
 <?php
 
-namespace base;
+namespace base\console;
 
-use actions\AbstractAction;
+use base\AbstractAction;
+use base\AbstractRouter;
 
-class Router
+class Router extends AbstractRouter
 {
-    public function getAction(Request $request): ?AbstractAction
+    /**
+     * @param Request $request
+     * @return AbstractAction|null
+     */
+    public function getAction($request)
     {
         $actionName = $request->getParam('action');
 

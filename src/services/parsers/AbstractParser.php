@@ -1,23 +1,23 @@
 <?php
 
-namespace services;
+namespace services\parsers;
 
 use base\BaseObject;
-use models\ParsedItem;
+use models\collections\ParsedItemsCollection;
 
 abstract class AbstractParser extends BaseObject
 {
     /**
      * @param string $str
-     * @return ParsedItem[]
+     * @return ParsedItemsCollection
      */
-    abstract public function parse(string $str): array;
+    abstract public function parse(string $str): ParsedItemsCollection;
 
     /**
      * @param string $url
-     * @return ParsedItem[]
+     * @return ParsedItemsCollection
      */
-    public function parseUrl(string $url): array
+    public function parseUrl(string $url): ParsedItemsCollection
     {
         $str = file_get_contents($url);
 

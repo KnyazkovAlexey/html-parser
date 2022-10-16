@@ -2,11 +2,11 @@
 
 namespace actions;
 
-use base\Request;
-use base\Response;
-use helpers\ArrayHelper;
-use services\HtmlParser;
-use exceptions\UserException;
+use base\AbstractAction;
+use base\console\Request;
+use base\console\Response;
+use services\parsers\HtmlParser;
+use base\exceptions\UserException;
 use validators\UrlValidator;
 
 class ParseAction extends AbstractAction
@@ -16,7 +16,7 @@ class ParseAction extends AbstractAction
      * @return Response
      * @throws UserException
      */
-    public function run(Request $request): Response
+    public function run($request)
     {
         $url = $request->getParam('url');
 
@@ -30,11 +30,10 @@ class ParseAction extends AbstractAction
             throw new UserException($validator->getFirstErrorMessage());
         }
 
-        $parsedItems = (new HtmlParser())->parseUrl($url);
-        $names = ArrayHelper::getColumn($parsedItems, 'name');
+        $tagsNames = (new HtmlParser())->parseUrl($url)->getNames();
 
-        $output = 'Count: ' . count($parsedItems) . PHP_EOL;
-        $output .= 'Names: ' . implode(', ', $names) . PHP_EOL;
+        $output = 'Count: ' . count($tagsNames) . PHP_EOL;
+        $output .= 'Names: ' . implode(', ', $tagsNames) . PHP_EOL;
 
         return new Response(['output' => $output]);
     }

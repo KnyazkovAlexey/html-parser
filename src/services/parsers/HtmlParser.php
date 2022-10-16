@@ -1,7 +1,8 @@
 <?php
 
-namespace services;
+namespace services\parsers;
 
+use models\collections\ParsedItemsCollection;
 use models\ParsedItem;
 
 class HtmlParser extends AbstractParser
@@ -9,9 +10,9 @@ class HtmlParser extends AbstractParser
     /**
      * @inheritdoc
      */
-    public function parse(string $str): array
+    public function parse(string $str): ParsedItemsCollection
     {
-        $parsedItems = [];
+        $parsedItems = new ParsedItemsCollection;
 
         preg_match_all('~<([^>]+)/?>~', $str, $matches);
         //body bgcolor="#fff", div id="mngb", /div, ...

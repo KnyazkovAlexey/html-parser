@@ -1,12 +1,14 @@
 <?php
 
-namespace base;
+namespace base\console;
 
-class Response extends BaseObject
+use base\AbstractResponse;
+
+class Response extends AbstractResponse
 {
     public string $output;
 
-    public function send()
+    public function send(): void
     {
         if (!empty($this->output)) {
             echo $this->output;
