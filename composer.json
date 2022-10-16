@@ -1,0 +1,17 @@
+{
+  "name": "test/test",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Aleksey Knyazkov"
+    }
+  ],
+  "require": {
+    "php": ">=8.0.0"
+  }
+}
