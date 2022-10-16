@@ -6,5 +6,5 @@ use base\BaseObject;
 
 class ParsedItem extends BaseObject
 {
-    public $name;
+    public string $name;
 }
